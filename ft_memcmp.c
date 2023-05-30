@@ -6,9 +6,22 @@
 /*   By: hsami <hsami@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:31:48 by hsami             #+#    #+#             */
-/*   Updated: 2023/05/31 00:01:56 by hsami            ###   ########.fr       */
+/*   Updated: 2023/05/31 00:47:48 by hsami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-// test FUCKK
+
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (((unsigned char *) s1)[i] != ((unsigned char *) s2)[i])
+			return (((unsigned char *) s1)[i] - ((unsigned char *) s2)[i]);
+		i++;
+	}
+	return (0);
+}
