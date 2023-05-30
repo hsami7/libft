@@ -6,7 +6,7 @@
 /*   By: hsami <hsami@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:31:48 by hsami             #+#    #+#             */
-/*   Updated: 2023/05/31 00:54:15 by hsami            ###   ########.fr       */
+/*   Updated: 2023/05/31 01:00:18 by hsami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,4 @@ RETURN VALUES
      erwise returns the difference between the first two differing bytes
      (treated as unsigned char values, so that `\200' is greater than `\0',
      for example).
-/*
+*/
