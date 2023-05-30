@@ -6,7 +6,7 @@
 /*   By: hsami <hsami@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 23:31:48 by hsami             #+#    #+#             */
-/*   Updated: 2023/05/31 00:47:48 by hsami            ###   ########.fr       */
+/*   Updated: 2023/05/31 00:54:15 by hsami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,3 +25,13 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
+
+/*
+The memcmp() function compares byte string s1 against byte string s2.
+    Both strings are assumed to be n bytes long.
+RETURN VALUES
+     The memcmp() function returns zero if the two strings are identical, oth-
+     erwise returns the difference between the first two differing bytes
+     (treated as unsigned char values, so that `\200' is greater than `\0',
+     for example).
+/*
