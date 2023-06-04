@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsami <hsami@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 13:30:31 by hsami             #+#    #+#             */
-/*   Updated: 2023/06/02 17:51:31 by hsami            ###   ########.fr       */
+/*   Created: 2023/06/03 14:20:49 by hsami             #+#    #+#             */
+/*   Updated: 2023/06/03 14:22:52 by hsami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned char	*str_src;
-	unsigned char	*str_dst;
+	int	i;
 
-	str_src = (unsigned char *) src;
-	str_dst = (unsigned char *) dst;
-	if (!dst && !src)
+	i = 0;
+	if (s && f)
 	{
-		return (dst);
+		while (s[i])
+		{
+			f(i, &s[i]);
+			i++;
+		}
 	}
-	while (n > 0)
-	{
-		str_dst[n - 1] = str_src[n - 1];
-		n--;
-	}
-	return (dst);
 }
 
 /*
-The memcpy() function copies n bytes from memory area src to memory area dst.
- The memcpy() function returns the original value of dst.
+Applies the function ’f’ on each character of
+the string passed as argument, passing its index
+as first argument. Each character is passed by
+address to ’f’ to be modified if necessary.
 */

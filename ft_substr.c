@@ -6,7 +6,7 @@
 /*   By: hsami <hsami@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 20:58:17 by hsami             #+#    #+#             */
-/*   Updated: 2023/06/01 21:11:43 by hsami            ###   ########.fr       */
+/*   Updated: 2023/06/04 14:28:20 by hsami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	size_t	i;
 	size_t	j;
 	char	*str;
+	size_t	strlen;
 
-	str = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!str)
-		return (NULL);
 	i = 0;
 	j = 0;
+	strlen = ft_strlen(s);
+	if ((size_t) start >= strlen)
+		return (ft_strdup(""));
+	if (len > ft_strlen(&s[start]))
+		str = (char *)malloc((ft_strlen(&s[start]) + 1) * sizeof(char));
+	else
+		str = (char *) malloc((len +1) * sizeof(char));
+	if (!str)
+		return (NULL);
 	while (s[i])
 	{
 		if (i >= start && j < len)

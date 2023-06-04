@@ -1,51 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hsami <hsami@student.42wolfsburg.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/01 21:07:29 by hsami             #+#    #+#             */
-/*   Updated: 2023/06/02 12:41:04 by hsami            ###   ########.fr       */
+/*   Created: 2023/06/03 13:49:28 by hsami             #+#    #+#             */
+/*   Updated: 2023/06/04 14:29:41 by hsami            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*str;
 	size_t	i;
-	size_t	j;
 
-	str = (char *)malloc(
-			sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
+	if (!(str = ft_strdup(s)))
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (s1[i])
+	while (str[i])
 	{
-		str[j++] = s1[i];
+		str[i] = (*f)(i, str[i]);
 		i++;
 	}
-	i = 0;
-	while (s2[i])
-	{
-		str[j++] = s2[i];
-		i++;
-	}
-	str[j] = 0;
 	return (str);
 }
 
 /*
-Allocates (with malloc(3)) and returns a new
-string, which is the result of the concatenation
-of ’s1’ and ’s2’.
-*/
+Applies the function ’f’ to each character of the
+string ’s’, and passing its index as first argument
+to create a new string (with malloc(3)) resulting
+from successive applications of ’f’.
 
-/*
-The new string.
-or NULL if the allocation fails.
+The string created from the successive applications
+of ’f’.
+Returns NULL if the allocation fails.
 */
