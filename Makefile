@@ -1,42 +1,42 @@
-NAME = libft.a
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hsami <hsami@student.42wolfsburg.de>       +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/08 15:37:40 by hsami             #+#    #+#              #
+#    Updated: 2023/06/08 21:04:30 by hsami            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC = ft_isalnum.c ft_isdigit.c ft_memcpy.c ft_tolower.c \
-		ft_bzero.c ft_isalpha.c ft_isprint.c ft_memset.c \
-		ft_toupper.c ft_calloc.c ft_isascii.c ft_memchr.c ft_strncmp.c\
-		ft_memmove.c ft_strlcpy.c ft_strlen.c ft_strlcat.c\
-		ft_strchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_strrchr.c ft_strdup.c\
-		ft_substr.c ft_strjoin.c ft_strtrim.c ft_strmapi.c ft_putchar_fd.c\
-		ft_putstr_fd.c ft_putendl_fd.c ft_striteri.c ft_putnbr_fd.c ft_split.c\
-		ft_itoa.c
+NAME = libft.a
+C_FLAGS = -Wall -Wextra -Werror -std=c99
+SRC = ft_isascii.c ft_isprint.c ft_isalpha.c ft_isdigit.c ft_isalnum.c \
+			ft_tolower.c ft_toupper.c ft_strlen.c ft_strlcpy.c ft_strlcat.c \
+			ft_strchr.c ft_strrchr.c ft_strnstr.c ft_strncmp.c ft_atoi.c \
+			ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_putnbr_fd.c \
+			ft_memchr.c ft_memcmp.c ft_calloc.c ft_strdup.c ft_substr.c \
+			ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c \
+			ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
+			
+SRC_B = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c\
+			ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
+			ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c \
 
 OBJ = $(SRC:.c=.o)
-
-CC = cc
-
-CFLAGS = -Wall -Werror -Wextra
-
-COMPILE = $(CC) $(CFLAGS) -c
-
-LIB = ar -rcs $(NAME)
-
-# -r      Replace or add the specified files to the archive.  If the archive does not exist a new archive file is created.
-#c      Whenever an archive is created, an informational message to that effect is written to standard error.
-#-s      Write an object-file index into the archive, or update an existing one, even if no other change is made to the archive.
-
+OBJ_B = $(SRC_B:.c=.o)
+all : $(NAME)
+$(NAME) : $(OBJ)
+		@ar rc $(NAME) $(OBJ)
+		@ranlib $(NAME)
 %.o : %.c
-	$(COMPILE) $< -o $@
-
-all: $(NAME)
-
-$(NAME): $(OBJ)
-	$(LIB) $(OBJ)
-
-clean:
-	rm -f $(OBJ)
-
-fclean: clean
-	rm -f $(NAME)
-
-re: fclean all
-
-.PHONY: all clean fclean re
+		cc $(C_FLAGS) -c $< -o $@
+bonus : $(NAME) $(OBJ_B)
+		@ar rc $(NAME) $(OBJ_B)
+		@ranlib $(NAME)
+clean : 
+		rm -f $(OBJ) $(OBJ_B)
+fclean : clean
+		rm -f $(NAME)
+re : fclean all
